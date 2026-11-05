@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Phan Đức Thiện_K244161809</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">Mini<span>Shop</span> Admin</div>
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li><a href="index.html">Sản phẩm</a></li>
+                    <li><a href="admin.html" class="active">Quản trị (Admin)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="login-wrap" id="loginBox">
+            <h1>Đăng nhập quản trị</h1>
+            <form id="loginForm">
+                <div class="field">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
+                </div>
+                <div class="field">
+                    <label for="password">Mật khẩu</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                        <button type="button" class="pw-toggle" id="pwToggle" aria-label="Hiện mật khẩu" title="Hiện/ẩn mật khẩu">
+                            <svg class="eye-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.9 17.9A10.9 10.9 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.1-5.9M9.9 4.2A9.1 9.1 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.2 3.2M14.1 14.1a3 3 0 1 1-4.2-4.2"/><path d="M1 1l22 22"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-error" id="loginError"></div>
+                <button class="btn" type="submit" style="width:100%">Đăng nhập</button>
+            </form>
+            <div class="demo-acc">Tài khoản thử:<br>Tên đăng nhập: <b>admin</b><br>Mật khẩu: <b>admin123</b></div>
+        </section>
+
+        <div class="admin-layout" id="dashboard" hidden>
+            <aside class="admin-side" aria-label="Menu quản trị">
+                <div class="side-user">
+                    <strong id="whoName"></strong>
+                    <span id="whoRole"></span>
+                </div>
+                <ul id="sideMenu">
+                    <li><button type="button" data-view="overview" class="active">Tổng quan</button></li>
+                    <li><button type="button" data-view="orders">Đơn hàng</button></li>
+                    <li><button type="button" data-view="products">Sản phẩm</button></li>
+                    <li><button type="button" data-view="customers">Khách hàng</button></li>
+                    <li><button type="button" data-view="employees">Nhân viên</button></li>
+                </ul>
+                <button class="btn btn-light side-logout" id="btnLogout" type="button">Đăng xuất</button>
+            </aside>
+
+            <div class="admin-content">
+                <section id="view-overview" class="view">
+                    <h1 class="view-title">Tổng quan</h1>
+                    <div class="stat-grid">
+                        <div class="stat-card"><div class="label">Tổng đơn hàng</div><div class="value" id="stOrders">0</div></div>
+                        <div class="stat-card"><div class="label">Doanh thu</div><div class="value" id="stRevenue">$0</div></div>
+                        <div class="stat-card"><div class="label">Sản phẩm đã bán</div><div class="value" id="stSold">0</div></div>
+                        <div class="stat-card"><div class="label">Giá trị trung bình mỗi đơn</div><div class="value" id="stAvg">$0</div></div>
+                        <div class="stat-card"><div class="label">Khách hàng đã mua</div><div class="value" id="stCustomers">0</div></div>
+                        <div class="stat-card"><div class="label">Đơn đang xử lý</div><div class="value" id="stPending">0</div></div>
+                        <div class="stat-card"><div class="label">Tổng tồn kho</div><div class="value" id="stStock">0</div></div>
+                        <div class="stat-card"><div class="label">Sản phẩm sắp hết hàng</div><div class="value" id="stLow">0</div></div>
+                    </div>
+                    <div class="two-col">
+                        <div class="panel">
+                            <h2>Doanh thu theo ngày</h2>
+                            <div class="col-chart" id="chartDay"></div>
+                        </div>
+                        <div class="panel">
+                            <h2>Doanh thu theo danh mục</h2>
+                            <div id="chartCategory"></div>
+                        </div>
+                    </div>
+                    <div class="two-col">
+                        <div class="panel">
+                            <h2>Trạng thái đơn hàng</h2>
+                            <div id="chartStatus"></div>
+                        </div>
+                        <div class="panel">
+                            <h2>Top 5 sản phẩm bán chạy</h2>
+                            <table class="data">
+                                <thead><tr><th>Sản phẩm</th><th class="num">Đã bán</th><th class="num">Doanh thu</th></tr></thead>
+                                <tbody id="topBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <h2>Đơn hàng gần đây</h2>
+                        <table class="data">
+                            <thead><tr><th>Mã đơn</th><th>Ngày tạo</th><th>Khách hàng</th><th class="num">Tổng tiền</th><th>Trạng thái</th></tr></thead>
+                            <tbody id="recentBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-orders" class="view" hidden>
+                    <h1 class="view-title">Quản lý đơn hàng <small id="orderCount"></small></h1>
+                    <div class="panel">
+                        <div class="panel-tools">
+                            <input type="search" id="orderSearch" placeholder="Tìm mã đơn, khách hàng, nhân viên" aria-label="Tìm đơn hàng">
+                            <select id="statusFilter" aria-label="Lọc theo trạng thái">
+                                <option value="">Tất cả trạng thái</option>
+                                <option>Đã thanh toán</option>
+                                <option>Đã giao</option>
+                                <option>Đang xử lý</option>
+                                <option>Đã hủy</option>
+                            </select>
+                            <label class="tool-label">Từ ngày <input type="date" id="dateFrom"></label>
+                            <label class="tool-label">Đến ngày <input type="date" id="dateTo"></label>
+                            <select id="orderSort" aria-label="Sắp xếp">
+                                <option value="date-desc">Mới nhất</option>
+                                <option value="date-asc">Cũ nhất</option>
+                                <option value="total-desc">Tổng tiền giảm dần</option>
+                                <option value="total-asc">Tổng tiền tăng dần</option>
+                            </select>
+                            <button class="btn btn-light" id="btnExport" type="button">Xuất CSV</button>
+                        </div>
+                        <table class="data">
+                            <thead><tr><th>Mã đơn</th><th>Ngày tạo</th><th>Nhân viên</th><th>Khách hàng</th><th class="num">Số lượng</th><th class="num">Tổng tiền</th><th>Trạng thái</th></tr></thead>
+                            <tbody id="orderBody"></tbody>
+                        </table>
+                        <p class="hint">Bấm vào một dòng để xem chi tiết hóa đơn và cập nhật trạng thái.</p>
+                    </div>
+                </section>
+
+                <section id="view-products" class="view" hidden>
+                    <h1 class="view-title">Quản lý sản phẩm <small id="productCount"></small></h1>
+                    <div class="panel">
+                        <div class="panel-tools">
+                            <input type="search" id="productSearch" placeholder="Tìm tên sản phẩm" aria-label="Tìm sản phẩm">
+                            <select id="productCategory" aria-label="Danh mục"><option value="">Tất cả danh mục</option></select>
+                            <select id="productFilter" aria-label="Lọc">
+                                <option value="">Tất cả sản phẩm</option>
+                                <option value="sold">Đã có người mua</option>
+                                <option value="unsold">Chưa bán được</option>
+                                <option value="low">Sắp hết hàng</option>
+                            </select>
+                            <select id="productSort" aria-label="Sắp xếp">
+                                <option value="sold-desc">Bán chạy nhất</option>
+                                <option value="revenue-desc">Doanh thu cao nhất</option>
+                                <option value="stock-asc">Tồn kho thấp nhất</option>
+                                <option value="price-desc">Giá cao nhất</option>
+                                <option value="id-asc">Mã sản phẩm</option>
+                            </select>
+                        </div>
+                        <table class="data">
+                            <thead><tr><th>Mã</th><th>Hình</th><th>Sản phẩm</th><th>Danh mục</th><th class="num">Giá</th><th class="num">Tồn kho</th><th class="num">Đã bán</th><th class="num">Doanh thu</th><th>Tình trạng</th></tr></thead>
+                            <tbody id="productBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-customers" class="view" hidden>
+                    <h1 class="view-title">Quản lý khách hàng <small id="customerCount"></small></h1>
+                    <div class="panel">
+                        <div class="panel-tools">
+                            <input type="search" id="customerSearch" placeholder="Tìm tên, email, số điện thoại" aria-label="Tìm khách hàng">
+                        </div>
+                        <table class="data">
+                            <thead><tr><th>Mã</th><th>Họ tên</th><th>Điện thoại</th><th>Email</th><th>Địa chỉ</th><th class="num">Số đơn</th><th class="num">Tổng chi tiêu</th></tr></thead>
+                            <tbody id="customerBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-employees" class="view" hidden>
+                    <h1 class="view-title">Nhân viên <small id="employeeCount"></small></h1>
+                    <div class="panel">
+                        <table class="data">
+                            <thead><tr><th>Mã</th><th>Họ tên</th><th>Chức vụ</th><th>Email</th><th class="num">Số đơn xử lý</th><th class="num">Doanh thu</th><th>Tỷ lệ</th></tr></thead>
+                            <tbody id="employeeBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        Phan Đức Thiện - K244161809
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+    <script>Admin.init();</script>
+</body>
+</html>
