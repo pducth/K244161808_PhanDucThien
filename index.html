@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phan Đức Thiện_K244161809 - Mini Shop</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">Mini<span>Shop</span></div>
+            <nav class="main-nav" aria-label="Menu chính">
+                <ul>
+                    <li><a href="index.html" class="active">Sản phẩm</a></li>
+                    <li><a href="admin.html">Quản trị (Admin)</a></li>
+                </ul>
+            </nav>
+            <button class="btn-cart" id="btnCart" type="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 7H6"/></svg>
+                <span>Giỏ hàng (<span id="cartBadge">0</span>)</span>
+            </button>
+        </div>
+        
+        <div class="mini-cart" id="miniCart"></div>
+    </header>
+
+    <div class="page">
+        
+        <aside class="sidebar" aria-label="Tìm kiếm nâng cao">
+            <h2>Tìm kiếm nâng cao</h2>
+            <form id="searchForm" autocomplete="off">
+                <div class="field">
+                    <label for="fKeyword">Từ khoá</label>
+                    <input type="search" id="fKeyword" name="keyword" placeholder="Tên sản phẩm..."
+                           minlength="2" maxlength="50" pattern="[^<>]*" title="Từ 2 đến 50 ký tự, không chứa < >">
+                </div>
+                <div class="field">
+                    <label>Khoảng giá ($)</label>
+                    <div class="field-row">
+                        <input type="number" name="minPrice" placeholder="Từ" min="0" max="1000" step="0.01" aria-label="Giá từ">
+                        <input type="number" name="maxPrice" placeholder="Đến" min="0" max="1000" step="0.01" aria-label="Giá đến">
+                    </div>
+                    <span class="hint">0 - 1000 USD</span>
+                </div>
+                <div class="field">
+                    <label for="fColor">Màu sắc</label>
+                    <select id="fColor" name="color"><option value="">Tất cả màu</option></select>
+                </div>
+                <div class="field">
+                    <label for="fRating">Đánh giá tối thiểu (1-5)</label>
+                    <input type="number" id="fRating" name="rating" min="1" max="5" step="0.5" placeholder="VD: 4">
+                </div>
+                <div class="field">
+                    <label for="fCategory">Danh mục</label>
+                    <select id="fCategory" name="category">
+                        <option value="">Tất cả danh mục</option>
+                    </select>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" type="submit">Tìm kiếm</button>
+                    <button class="btn btn-light" type="reset">Xoá lọc</button>
+                </div>
+            </form>
+        </aside>
+
+        <main>
+            <section id="products" aria-labelledby="productsTitle">
+                <div class="section-head">
+                    <h1 id="productsTitle">Danh sách sản phẩm</h1>
+                    <span class="result-count" id="resultCount"></span>
+                </div>
+                
+                <div class="product-grid" id="productGrid"></div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        Phan Đức Thiện - K244161809
+    </footer>
+
+    <div class="modal-backdrop" id="modal">
+        <div class="modal"><button class="close" data-action="close" aria-label="Đóng">×</button><div id="modalBody"></div></div>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/shop.js"></script>
+    <script>
+        Cart.init();
+        Checkout.init();
+        Shop.init();
+
+        document.getElementById("modal").addEventListener("click", function (e) {
+            if (e.target.id == "modal") { closeModal(); return; }
+            var el = e.target.closest("[data-action]");
+            if (!el) return;
+            var action = el.getAttribute("data-action");
+            if (action == "close") closeModal();
+            else if (action == "modal-add") {
+                var v = el.getAttribute("data-variant").split("|");
+                var res = Cart.add(Shop.byId(el.getAttribute("data-id")), v[0], v[1]);
+                showToast(res.msg);
+                if (res.ok) { closeModal(); Cart.toggle(true); }
+            }
+        });
+    </script>
+</body>
+</html>

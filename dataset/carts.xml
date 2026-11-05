@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<carts>
+    <cart id="HD001">
+        <created_date>2026-10-06</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH002</customer_id>
+        <details>
+            <item product_id="3" quantity="3" color="Xám" size="S" price="55.99"/>
+            <item product_id="1" quantity="3" color="Trắng" size="L" price="109.95"/>
+        </details>
+        <total>497.82</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD002">
+        <created_date>2026-10-07</created_date>
+        <employee_id>NV002</employee_id>
+        <customer_id>KH005</customer_id>
+        <details>
+            <item product_id="19" quantity="1" color="Hồng" size="M" price="7.95"/>
+            <item product_id="4" quantity="3" color="Xám" size="M" price="15.99"/>
+            <item product_id="5" quantity="1" color="Vàng hồng" size="Free" price="695"/>
+            <item product_id="8" quantity="2" color="Vàng" size="Free" price="10.99"/>
+        </details>
+        <total>772.9</total>
+        <status>Đã thanh toán</status>
+    </cart>
+    <cart id="HD003">
+        <created_date>2026-10-08</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH001</customer_id>
+        <details>
+            <item product_id="9" quantity="1" color="Đen" size="Free" price="64"/>
+        </details>
+        <total>64.0</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD004">
+        <created_date>2026-10-09</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH002</customer_id>
+        <details>
+            <item product_id="12" quantity="2" color="Xanh dương" size="Free" price="114"/>
+            <item product_id="4" quantity="3" color="Đen" size="XL" price="15.99"/>
+            <item product_id="1" quantity="1" color="Trắng" size="M" price="109.95"/>
+            <item product_id="18" quantity="1" color="Be" size="M" price="9.85"/>
+        </details>
+        <total>395.77</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD005">
+        <created_date>2026-10-10</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH005</customer_id>
+        <details>
+            <item product_id="3" quantity="3" color="Xanh navy" size="L" price="55.99"/>
+            <item product_id="11" quantity="2" color="Bạc" size="Free" price="109"/>
+            <item product_id="10" quantity="1" color="Bạc" size="Free" price="109"/>
+            <item product_id="16" quantity="1" color="Trắng" size="L" price="29.95"/>
+        </details>
+        <total>524.92</total>
+        <status>Đã giao</status>
+    </cart>
+    <cart id="HD006">
+        <created_date>2026-10-11</created_date>
+        <employee_id>NV001</employee_id>
+        <customer_id>KH002</customer_id>
+        <details>
+            <item product_id="3" quantity="2" color="Đen" size="XL" price="55.99"/>
+        </details>
+        <total>111.98</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD007">
+        <created_date>2026-10-12</created_date>
+        <employee_id>NV002</employee_id>
+        <customer_id>KH002</customer_id>
+        <details>
+            <item product_id="17" quantity="3" color="Trắng" size="M" price="39.99"/>
+        </details>
+        <total>119.97</total>
+        <status>Đã thanh toán</status>
+    </cart>
+    <cart id="HD008">
+        <created_date>2026-10-13</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH001</customer_id>
+        <details>
+            <item product_id="5" quantity="2" color="Vàng hồng" size="Free" price="695"/>
+        </details>
+        <total>1390.0</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD009">
+        <created_date>2026-10-14</created_date>
+        <employee_id>NV001</employee_id>
+        <customer_id>KH003</customer_id>
+        <details>
+            <item product_id="11" quantity="3" color="Bạc" size="Free" price="109"/>
+        </details>
+        <total>327.0</total>
+        <status>Đã thanh toán</status>
+    </cart>
+    <cart id="HD010">
+        <created_date>2026-10-15</created_date>
+        <employee_id>NV001</employee_id>
+        <customer_id>KH001</customer_id>
+        <details>
+            <item product_id="7" quantity="3" color="Vàng hồng" size="Free" price="9.99"/>
+            <item product_id="20" quantity="1" color="Đen" size="L" price="12.99"/>
+            <item product_id="15" quantity="3" color="Be" size="M" price="56.99"/>
+            <item product_id="14" quantity="3" color="Đen" size="Free" price="999.99"/>
+        </details>
+        <total>3213.9</total>
+        <status>Đã giao</status>
+    </cart>
+    <cart id="HD011">
+        <created_date>2026-10-16</created_date>
+        <employee_id>NV003</employee_id>
+        <customer_id>KH003</customer_id>
+        <details>
+            <item product_id="5" quantity="1" color="Bạc" size="Free" price="695"/>
+            <item product_id="14" quantity="3" color="Đen" size="Free" price="999.99"/>
+            <item product_id="13" quantity="1" color="Xanh dương" size="Free" price="599"/>
+            <item product_id="10" quantity="2" color="Bạc" size="Free" price="109"/>
+        </details>
+        <total>4511.97</total>
+        <status>Đang xử lý</status>
+    </cart>
+    <cart id="HD012">
+        <created_date>2026-10-17</created_date>
+        <employee_id>NV001</employee_id>
+        <customer_id>KH002</customer_id>
+        <details>
+            <item product_id="13" quantity="3" color="Bạc" size="Free" price="599"/>
+            <item product_id="4" quantity="1" color="Xanh navy" size="XL" price="15.99"/>
+            <item product_id="3" quantity="2" color="Đen" size="S" price="55.99"/>
+        </details>
+        <total>1924.97</total>
+        <status>Đã giao</status>
+    </cart>
+</carts>
